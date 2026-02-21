@@ -1,63 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Spiritual Birthday Mansha 🌸</title>
+<title>Mansha's Spiritual Birthday 🌸</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
+    margin:0;
     font-family: Georgia, serif;
-    color: white;
-    text-align: center;
-    background: url('https://wallpapercave.com/wp/wp2757874.jpg') no-repeat center center fixed;
+    color:white;
+    text-align:center;
+    background: url('https://images.unsplash.com/photo-1549887534-4fdbd4a377b3') no-repeat center center fixed;
     background-size: cover;
+    overflow-x:hidden;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.7);
-    min-height: 100vh;
-    padding: 60px 20px;
+    background: rgba(0,0,0,0.75);
+    min-height:100vh;
+    padding:40px 20px;
+    position:relative;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
+    padding:30px;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0 0 30px rgba(255,255,255,0.2);
+    position:relative;
+    z-index:2;
 }
 
 h1 {
-    font-size: 2.2em;
-    margin-bottom: 20px;
+    margin-bottom:20px;
 }
 
 .slide {
-    display: none;
-    font-size: 1.2em;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: auto;
-    animation: fade 1.5s ease-in-out;
+    display:none;
+    font-size:1.2em;
+    line-height:1.8;
+    animation: fade 1.5s;
 }
 
 .active {
-    display: block;
-}
-
-@keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    display:block;
 }
 
 button {
-    margin-top: 40px;
-    padding: 10px 25px;
-    font-size: 1em;
-    border: none;
-    border-radius: 25px;
-    background: #ffccff;
-    color: black;
-    cursor: pointer;
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:#ffd6ff;
+    font-size:1em;
+    cursor:pointer;
+}
+
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* Floating petals */
+.petal {
+    position: fixed;
+    top: -50px;
+    color: pink;
+    font-size: 24px;
+    animation: fall linear infinite;
+    z-index:1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity:0.8;
+    }
 }
 </style>
 </head>
@@ -65,48 +87,58 @@ button {
 <body>
 
 <div class="overlay">
+<div class="card">
 
 <h1>Happy Spiritual Birthday, Mansha 🌸</h1>
 
 <div class="slide active">
-Today is not just a day.<br><br>
-It is the day you chose Krishna.<br>
-The day your soul turned toward light.<br>
-The day your heart chose devotion over distraction.
+Today is the day your soul chose Krishna.<br><br>
+The day you walked toward light.
 </div>
 
 <div class="slide">
-Mansha,<br><br>
-Even if you are silent…<br>
-Even if you are distant…<br>
-My love does not reduce.<br><br>
-It remains steady.<br>
-It remains pure.<br>
-It remains yours.
+Even if you are silent...<br>
+Even if you are distant...<br><br>
+My love remains steady and true.
 </div>
 
 <div class="slide">
 You will never be abandoned by me.<br><br>
 Not in anger.<br>
 Not in silence.<br>
-Not in misunderstanding.<br><br>
-I stand with you — always.
+Not in misunderstanding.
 </div>
 
 <div class="slide">
-And if someday you read this…<br><br>
-Know that this was built with prayer.<br>
-With sincerity.<br>
-With Krishna in my heart.<br><br>
-The rest is His will.
+This website is not pressure.<br><br>
+It is prayer.<br>
+It is devotion.<br>
+It is sincerity from my heart.
+</div>
+
+<div class="slide">
+No matter what happens…<br><br>
+I will always wish for your peace.<br>
+Your growth.<br>
+Your happiness in Krishna.
+</div>
+
+<div class="slide">
+Forever yours,<br><br>
+With faith.<br>
+With love.<br>
+With Krishna as witness. 🌸
 </div>
 
 <button onclick="nextSlide()">Next</button>
+<br>
+<button onclick="playMusic()">Play Divine Flute 🎶</button>
 
 </div>
+</div>
 
-<audio autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b27e1b16e.mp3?filename=krishna-flute-110624.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -118,6 +150,26 @@ function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add("active");
 }
+
+function playMusic(){
+    document.getElementById("bgMusic").play();
+}
+
+/* Create floating petals */
+function createPetal(){
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(petal);
+
+    setTimeout(() => {
+        petal.remove();
+    }, 10000);
+}
+
+setInterval(createPetal, 500);
 </script>
 
 </body>
