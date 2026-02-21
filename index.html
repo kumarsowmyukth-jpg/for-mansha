@@ -3,55 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mansha's Spiritual Birthday 🌸</title>
+<title>Mansha 🌸</title>
 
 <style>
-body {
+body{
     margin:0;
     font-family: Georgia, serif;
     color:white;
     text-align:center;
-    background: url('https://images.unsplash.com/photo-1549887534-4fdbd4a377b3') no-repeat center center fixed;
-    background-size: cover;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-.overlay {
-    background: rgba(0,0,0,0.75);
-    min-height:100vh;
-    padding:40px 20px;
-    position:relative;
+/* Krishna background */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("https://i.imgur.com/3ZQ3Z7R.jpg") no-repeat center center;
+    background-size:cover;
+    z-index:-2;
 }
 
-.card {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border-radius:20px;
+/* Dark overlay */
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+    z-index:-1;
+}
+
+.card{
+    margin-top:15vh;
     padding:30px;
-    max-width:700px;
-    margin:auto;
-    box-shadow:0 0 30px rgba(255,255,255,0.2);
-    position:relative;
-    z-index:2;
 }
 
-h1 {
-    margin-bottom:20px;
+.glow{
+    font-size:2.5em;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
-.slide {
+@keyframes glow{
+    from{text-shadow:0 0 10px #fff,0 0 20px #ff69b4;}
+    to{text-shadow:0 0 20px #fff,0 0 40px #ff1493;}
+}
+
+.slide{
     display:none;
     font-size:1.2em;
+    margin-top:25px;
     line-height:1.8;
     animation: fade 1.5s;
 }
 
-.active {
+.active{
     display:block;
 }
 
-button {
-    margin-top:20px;
+button{
+    margin-top:25px;
     padding:10px 20px;
     border:none;
     border-radius:25px;
@@ -60,67 +76,76 @@ button {
     cursor:pointer;
 }
 
-@keyframes fade {
-    from {opacity:0;}
-    to {opacity:1;}
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-/* Floating petals */
-.petal {
-    position: fixed;
-    top: -50px;
-    color: pink;
-    font-size: 24px;
-    animation: fall linear infinite;
+/* Petals */
+.petal{
+    position:fixed;
+    top:-50px;
+    font-size:24px;
+    animation:fall linear infinite;
     z-index:1;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
         opacity:0.8;
     }
+}
+
+/* Final fade page */
+#finalPage{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    animation:fade 2s;
+}
+
+#finalPage h1{
+    font-size:3em;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
 <div class="card">
 
-<h1>Happy Spiritual Birthday, Mansha 🌸</h1>
+<h1 class="glow">Happy Spiritual Birthday, Mansha 🌸</h1>
 
 <div class="slide active">
-Today is the day your soul chose Krishna.<br><br>
-The day you walked toward light.
+Today your soul chose Krishna.<br><br>
+And that light suits you beautifully.
 </div>
 
 <div class="slide">
 Even if you are silent...<br>
 Even if you are distant...<br><br>
-My love remains steady and true.
+My love remains steady.
 </div>
 
 <div class="slide">
 You will never be abandoned by me.<br><br>
 Not in anger.<br>
-Not in silence.<br>
-Not in misunderstanding.
+Not in silence.
 </div>
 
 <div class="slide">
-This website is not pressure.<br><br>
+This is not pressure.<br><br>
 It is prayer.<br>
-It is devotion.<br>
-It is sincerity from my heart.
-</div>
-
-<div class="slide">
-No matter what happens…<br><br>
-I will always wish for your peace.<br>
-Your growth.<br>
-Your happiness in Krishna.
+It is sincerity.
 </div>
 
 <div class="slide">
@@ -135,41 +160,47 @@ With Krishna as witness. 🌸
 <button onclick="playMusic()">Play Divine Flute 🎶</button>
 
 </div>
+
+<div id="finalPage">
+<h1>Mansha 🌸</h1>
+<p>Krishna is watching over you.</p>
 </div>
 
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b27e1b16e.mp3?filename=krishna-flute-110624.mp3" type="audio/mpeg">
+<audio id="bgMusic">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
+let currentSlide=0;
+const slides=document.querySelectorAll(".slide");
 
-function nextSlide() {
+function nextSlide(){
     slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
+    currentSlide++;
+
+    if(currentSlide<slides.length){
+        slides[currentSlide].classList.add("active");
+    }else{
+        document.querySelector(".card").style.display="none";
+        document.getElementById("finalPage").style.display="flex";
+    }
 }
 
 function playMusic(){
     document.getElementById("bgMusic").play();
 }
 
-/* Create floating petals */
+/* Petals */
 function createPetal(){
-    const petal = document.createElement("div");
+    const petal=document.createElement("div");
     petal.classList.add("petal");
-    petal.innerHTML = "🌸";
-    petal.style.left = Math.random() * 100 + "vw";
-    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    petal.innerHTML="🌸";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(5+Math.random()*5)+"s";
     document.body.appendChild(petal);
-
-    setTimeout(() => {
-        petal.remove();
-    }, 10000);
+    setTimeout(()=>{petal.remove();},10000);
 }
-
-setInterval(createPetal, 500);
+setInterval(createPetal,500);
 </script>
 
 </body>
