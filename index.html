@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Spiritual Birthday Mansha 🌸</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  color: white;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1598575435240-7b9f9b6d3a4f') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  min-height: 100vh;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.slide {
+  display: none;
+  animation: fade 1.5s ease-in-out;
+}
+
+.active {
+  display: block;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #FFD700;
+}
+
+p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+button {
+  margin-top: 40px;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #FFD700;
+  color: black;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ffea85;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Soft floating petals */
+.petal {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float linear infinite;
+  z-index: 1; /* Behind content */
+}
+
+@keyframes float {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <h1>Happy Spiritual Birthday, Mansha 🌸</h1>
+    <p>
+      Today is the day your soul chose Krishna.  
+      The day you stepped deeper into devotion.  
+      <br><br>
+      I truly admire the light you walk toward.  
+      May your heart always feel protected.  
+      May your devotion grow stronger each day.  
+      May Krishna guide you gently, always.
+    </p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <h1>A Quiet Truth 🌷</h1>
+    <p>
+      I know things have been quiet between us.  
+      And I respect your space completely.  
+      <br><br>
+      I just want you to never feel abandoned.  
+      Not by me.  
+      <br><br>
+      I am here.  
+      Without pressure.  
+      Without expectations.  
+      Just steady.
+    </p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <h1>From My Heart 🌙</h1>
+    <p>
+      My love for you is not loud.  
+      Not temporary.  
+      Just calm and steady.  
+      <br><br>
+      Whether near or far,  
+      my only prayer is for your peace.  
+      <br><br>
+      The rest… I leave to Krishna.
+    </p>
+  </div>
+
+</div>
+
+<!-- Background Flute Music -->
+<audio id="bgMusic" autoplay loop muted>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function nextSlide() {
+  slides[currentSlide].classList.remove("active");
+  currentSlide++;
+  if (currentSlide < slides.length) {
+    slides[currentSlide].classList.add("active");
+  }
+}
+
+/* Create soft floating petals */
+for (let i = 0; i < 15; i++) {
+  let petal = document.createElement("div");
+  petal.className = "petal";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = (6 + Math.random() * 6) + "s";
+  document.body.appendChild(petal);
+}
+
+/* Unmute music on first interaction (mobile requirement) */
+document.body.addEventListener("click", function () {
+  const music = document.getElementById("bgMusic");
+  music.muted = false;
+});
+</script>
+
+</body>
+</html>
