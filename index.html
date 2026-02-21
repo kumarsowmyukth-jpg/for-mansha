@@ -16,7 +16,6 @@ body{
     background-size:cover;
 }
 
-/* Dark overlay */
 body::before{
     content:"";
     position:fixed;
@@ -29,30 +28,35 @@ body::before{
 }
 
 .container{
-    margin-top:15vh;
+    margin-top:12vh;
     padding:30px;
 }
 
 .glow{
-    font-size:2.5em;
+    font-size:2.8em;
     animation: glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes glow{
     from{text-shadow:0 0 10px #fff,0 0 20px #ff69b4;}
-    to{text-shadow:0 0 20px #fff,0 0 40px #ff1493;}
+    to{text-shadow:0 0 25px #fff,0 0 50px #ff1493;}
 }
 
 .slide{
     display:none;
     font-size:1.2em;
-    margin-top:25px;
+    margin-top:30px;
     line-height:1.8;
-    animation: fade 1.5s;
+    animation: fade 2s ease-in-out;
 }
 
 .active{
     display:block;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
 button{
@@ -63,11 +67,6 @@ button{
     background:#ffd6ff;
     font-size:1em;
     cursor:pointer;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
 }
 
 /* Petals */
@@ -86,7 +85,7 @@ button{
     }
 }
 
-/* Final page */
+/* Final Page */
 #finalPage{
     display:none;
     position:fixed;
@@ -94,15 +93,22 @@ button{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,0.95);
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    text-align:center;
 }
 
 #finalPage h1{
-    font-size:3em;
+    font-size:3.5em;
     animation: glow 2s ease-in-out infinite alternate;
+}
+
+#finalPage p{
+    margin-top:20px;
+    font-size:1.1em;
+    opacity:0.85;
 }
 </style>
 </head>
@@ -111,49 +117,75 @@ button{
 
 <div class="container">
 
-<h1 class="glow">Happy Spiritual Birthday, Mansha 🌸</h1>
+<h1 class="glow">Mansha 🌸</h1>
 
 <div class="slide active">
-Today your soul chose Krishna.<br><br>
-And that light suits you beautifully.
+Today is not just your birthday.<br><br>
+It is the day your soul chose Krishna.<br>
+The day you turned toward something eternal.<br><br>
+And that devotion in you…<br>
+It is rare.
 </div>
 
 <div class="slide">
-Even if you are silent...<br>
-Even if you are distant...<br><br>
-My love remains steady and pure.
+May Krishna bless you deeply.<br><br>
+May His flute guide your heart.<br>
+May His presence protect your path.<br>
+May His love surround you always.<br><br>
+You are seen.<br>
+You are protected.<br>
+You are cherished by Him.
 </div>
 
 <div class="slide">
-You will never be abandoned by me.<br><br>
-Not in anger.<br>
-Not in silence.<br>
-Not ever.
+Whether or not I stand beside you one day,<br>
+I truly wish you grow higher in spirituality.<br><br>
+May your bhakti deepen.<br>
+May your connection with Krishna become unshakable.<br>
+May you always feel His love within you.
 </div>
 
 <div class="slide">
-This is not pressure.<br><br>
-It is prayer.<br>
-It is devotion.<br>
-It is sincerity.
+There is something I wrote for you long ago…<br><br>
+I want to give everything to the Lord<br>
+while you being by my side.<br><br>
+The only proof of this wish is Krishna,<br>
+who watches everything from my heart.<br><br>
+He knows how much I want this…<br>
+and still, He teaches me patience.
 </div>
 
 <div class="slide">
-Forever yours,<br><br>
-With faith.<br>
-With love.<br>
-With Krishna as witness. 🌸
+I cannot wait to visit Vrindavan again.<br>
+I cannot wait to watch us dance.<br>
+I cannot wait to talk about Krishna for hours and hours.<br><br>
+Just to serve our Lord Krishna till the end of our life together.<br><br>
+That is all I need.<br>
+That is all I ever wanted.
 </div>
 
-<button onclick="nextSlide()">Next</button>
-<br>
+<div class="slide">
+But even if destiny writes something different…<br><br>
+My prayer for you will remain.<br>
+My respect for you will remain.<br>
+My sincerity will remain.<br><br>
+No pressure.<br>
+No force.<br>
+Only truth.
+</div>
+
 <button onclick="playMusic()">Play Divine Flute 🎶</button>
 
 </div>
 
 <div id="finalPage">
 <h1>Mansha 🌸</h1>
-<p>Krishna is watching over you.</p>
+<p>
+Under Krishna’s sky, everything unfolds in divine timing.<br><br>
+Jaggu loves you.<br>
+And so does Somi.<br><br>
+Radhe Krishna.
+</p>
 </div>
 
 <audio id="bgMusic">
@@ -164,20 +196,22 @@ With Krishna as witness. 🌸
 let currentSlide=0;
 const slides=document.querySelectorAll(".slide");
 
-function nextSlide(){
-    slides[currentSlide].classList.remove("active");
-    currentSlide++;
-
-    if(currentSlide<slides.length){
-        slides[currentSlide].classList.add("active");
-    }else{
-        document.querySelector(".container").style.display="none";
-        document.getElementById("finalPage").style.display="flex";
-    }
-}
-
 function playMusic(){
     document.getElementById("bgMusic").play();
+    autoSlides();
+}
+
+function autoSlides(){
+    setInterval(()=>{
+        if(currentSlide < slides.length-1){
+            slides[currentSlide].classList.remove("active");
+            currentSlide++;
+            slides[currentSlide].classList.add("active");
+        }else{
+            document.querySelector(".container").style.display="none";
+            document.getElementById("finalPage").style.display="flex";
+        }
+    },7000);
 }
 
 /* Petals */
@@ -186,11 +220,11 @@ function createPetal(){
     petal.classList.add("petal");
     petal.innerHTML="🌸";
     petal.style.left=Math.random()*100+"vw";
-    petal.style.animationDuration=(5+Math.random()*5)+"s";
+    petal.style.animationDuration=(6+Math.random()*5)+"s";
     document.body.appendChild(petal);
-    setTimeout(()=>{petal.remove();},10000);
+    setTimeout(()=>{petal.remove();},11000);
 }
-setInterval(createPetal,500);
+setInterval(createPetal,600);
 </script>
 
 </body>
